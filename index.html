@@ -76,15 +76,15 @@
         background: #fceada;
       }
 
-         .details {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  width: min(100%, 390px);
-  margin: -180px auto 0;
-  position: relative;
-  z-index: 2;
-}
+      .details {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        width: min(100%, 390px);
+        margin: -180px auto 0;
+        position: relative;
+        z-index: 2;
+      }
 
       .detail-card {
         padding: 12px 10px;
@@ -114,28 +114,75 @@
       .actions {
         margin-top: 50px;
         display: grid;
-        gap: 10px;
+        gap: 12px;
+        width: min(100%, 360px);
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .action-btn {
+        position: relative;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 50px;
-        padding: 14px 16px;
+        min-height: 54px;
+        padding: 14px 18px;
         border-radius: 999px;
-        background: linear-gradient(135deg, var(--pink-1), var(--pink-2), var(--pink-3));
-        color: #fff;
-        font-size: 1rem;
+        color: #ffffff;
+        font-size: 0.98rem;
         font-weight: 700;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 14px 28px rgba(206, 117, 152, 0.2);
-        transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        box-shadow:
+          0 14px 28px rgba(206, 117, 152, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          filter 180ms ease,
+          opacity 180ms ease;
+        overflow: hidden;
+      }
+
+      .action-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.18),
+          rgba(255, 255, 255, 0)
+        );
+        pointer-events: none;
       }
 
       .action-btn:hover {
         transform: translateY(-2px);
+        box-shadow:
+          0 18px 34px rgba(206, 117, 152, 0.28),
+          inset 0 1px 0 rgba(255, 255, 255, 0.24);
+        filter: saturate(1.03);
+      }
+
+      .action-btn:active {
+        transform: translateY(0);
+      }
+
+      .action-btn:focus-visible {
+        outline: 3px solid rgba(235, 136, 177, 0.28);
+        outline-offset: 3px;
+      }
+
+      .action-btn:nth-child(1) {
+        background: linear-gradient(135deg, #f8b8d0, #eb88b1, #d96a98);
+      }
+
+      .action-btn:nth-child(2) {
+        background: linear-gradient(135deg, #f6c4d9, #ef9bbe, #df78a5);
+      }
+
+      .action-btn:nth-child(3) {
+        background: linear-gradient(135deg, #f3a7c4, #e27aa8, #c85d8d);
       }
 
       .gift-title {
@@ -241,11 +288,13 @@
         }
 
         .actions {
-          gap: 8px;
+          margin-top: 50px;
+          gap: 10px;
+          width: min(100%, 340px);
         }
 
         .action-btn {
-          min-height: 46px;
+          min-height: 50px;
           padding: 12px 14px;
           font-size: 0.92rem;
         }
@@ -304,7 +353,12 @@
             <a class="action-btn" href="#presentes">
               Sugestões de presente
             </a>
-            <a class="action-btn" href="https://www.google.com/maps/place/Condom%C3%ADnio+Recanto+do+Bosque+2/@-22.5005264,-44.0644496,285m/data=!3m1!1e3!4m6!3m5!1s0x9ebd2c9dea34dd:0x94beb832c0e0da13!8m2!3d-22.5006584!4d-44.064659!16s%2Fg%2F11sr02_9zy?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">
+            <a
+              class="action-btn"
+              href="https://www.google.com/maps/place/Condom%C3%ADnio+Recanto+do+Bosque+2/@-22.5005264,-44.0644496,285m/data=!3m1!1e3!4m6!3m5!1s0x9ebd2c9dea34dd:0x94beb832c0e0da13!8m2!3d-22.5006584!4d-44.064659!16s%2Fg%2F11sr02_9zy?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noreferrer"
+            >
               Ver localização
             </a>
           </div>
