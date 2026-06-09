@@ -11,16 +11,16 @@
     <style>
       :root {
         --bg: #fff8f7;
-        --surface: rgba(255, 252, 249, 0.88);
+        --surface: rgba(255, 252, 249, 0.9);
         --surface-strong: rgba(255, 255, 255, 0.96);
-        --line: rgba(235, 136, 177, 0.24);
+        --line: rgba(235, 136, 177, 0.22);
         --text: #7e5b63;
         --text-soft: #a67984;
         --pink-1: #f6b0c8;
         --pink-2: #eb88b1;
         --pink-3: #d96a98;
-        --shadow: 0 18px 40px rgba(182, 104, 136, 0.2);
-        --radius-xl: 26px;
+        --shadow: 0 18px 40px rgba(182, 104, 136, 0.18);
+        --radius-xl: 28px;
         --radius-lg: 22px;
         --radius-md: 18px;
         --max: 460px;
@@ -60,24 +60,30 @@
       }
 
       .invite {
-        position: relative;
+        overflow: hidden;
+        border-radius: 30px;
+        box-shadow: 0 22px 48px rgba(190, 123, 151, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        background: linear-gradient(180deg, #fffdfc 0%, #fff8f7 100%);
+      }
+
+      .hero {
         width: 100%;
-        aspect-ratio: 941 / 1672;
+        aspect-ratio: 941 / 980;
         background:
           linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)),
           url("./mayafundo.png") center top / cover no-repeat;
-        border-radius: 30px;
-        overflow: hidden;
-        box-shadow: 0 22px 48px rgba(190, 123, 151, 0.22);
-        border: 1px solid rgba(255, 255, 255, 0.72);
+      }
+
+      .content {
+        position: relative;
+        padding: 18px 14px 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 248, 247, 0.98)),
+          radial-gradient(circle at top center, rgba(255, 255, 255, 0.72), transparent 44%);
       }
 
       .details {
-        position: absolute;
-        left: 50%;
-        top: 44.3%;
-        transform: translateX(-50%);
-        width: min(calc(100% - 26px), 392px);
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 8px;
@@ -89,7 +95,7 @@
         background: var(--surface);
         border: 1px solid var(--line);
         backdrop-filter: blur(10px);
-        box-shadow: 0 10px 26px rgba(208, 149, 171, 0.12);
+        box-shadow: 0 10px 26px rgba(208, 149, 171, 0.1);
         text-align: center;
       }
 
@@ -109,11 +115,7 @@
       }
 
       .actions {
-        position: absolute;
-        left: 50%;
-        top: 56.5%;
-        transform: translateX(-50%);
-        width: min(calc(100% - 34px), 368px);
+        margin-top: 14px;
         display: grid;
         gap: 10px;
       }
@@ -131,7 +133,7 @@
         font-weight: 700;
         text-align: center;
         border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 14px 28px rgba(206, 117, 152, 0.22);
+        box-shadow: 0 14px 28px rgba(206, 117, 152, 0.2);
         transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
       }
 
@@ -140,11 +142,7 @@
       }
 
       .gift-title {
-        position: absolute;
-        left: 50%;
-        top: 70.6%;
-        transform: translateX(-50%);
-        width: calc(100% - 32px);
+        margin-top: 20px;
         text-align: center;
         font-size: 1.38rem;
         font-weight: 700;
@@ -153,11 +151,7 @@
       }
 
       .gift-grid {
-        position: absolute;
-        left: 50%;
-        top: 74.5%;
-        transform: translateX(-50%);
-        width: min(calc(100% - 30px), 386px);
+        margin-top: 12px;
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
@@ -168,7 +162,7 @@
         border-radius: 22px;
         background: var(--surface-strong);
         border: 1px solid rgba(235, 136, 177, 0.22);
-        box-shadow: 0 14px 28px rgba(198, 143, 166, 0.14);
+        box-shadow: 0 14px 28px rgba(198, 143, 166, 0.12);
         backdrop-filter: blur(10px);
       }
 
@@ -207,6 +201,20 @@
         line-height: 1.2;
       }
 
+      .footer-image {
+        margin-top: 18px;
+        width: 100%;
+        aspect-ratio: 941 / 420;
+        border-radius: 24px;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)),
+          url("./maya-rodape.png") center center / cover no-repeat,
+          linear-gradient(180deg, #ffeaf2 0%, #fff8fb 100%);
+        border: 1px solid rgba(235, 136, 177, 0.18);
+        box-shadow: 0 12px 24px rgba(198, 143, 166, 0.1);
+      }
+
       @media (max-width: 420px) {
         .page {
           width: min(calc(100% - 12px), var(--max));
@@ -217,10 +225,12 @@
           border-radius: 24px;
         }
 
+        .content {
+          padding: 14px 10px 16px;
+        }
+
         .details {
-          width: min(calc(100% - 20px), 374px);
           gap: 6px;
-          top: 44.8%;
         }
 
         .detail-card {
@@ -237,8 +247,6 @@
         }
 
         .actions {
-          width: min(calc(100% - 24px), 356px);
-          top: 57.2%;
           gap: 8px;
         }
 
@@ -249,13 +257,11 @@
         }
 
         .gift-title {
-          top: 70.9%;
           font-size: 1.22rem;
+          margin-top: 16px;
         }
 
         .gift-grid {
-          width: min(calc(100% - 20px), 372px);
-          top: 74.8%;
           gap: 10px;
         }
 
@@ -271,67 +277,78 @@
           font-size: 0.64rem;
           padding: 6px 8px;
         }
+
+        .footer-image {
+          margin-top: 14px;
+          border-radius: 20px;
+        }
       }
     </style>
   </head>
   <body>
     <main class="page">
       <section class="invite" aria-label="Convite da Maya">
-        <div class="details">
-          <div class="detail-card">
-            <div class="detail-label">Data</div>
-            <div class="detail-value">00 de mês<br />Domingo</div>
-          </div>
-          <div class="detail-card">
-            <div class="detail-label">Horário</div>
-            <div class="detail-value">00h00</div>
-          </div>
-          <div class="detail-card">
-            <div class="detail-label">Local</div>
-            <div class="detail-value">Nome do local</div>
-          </div>
-        </div>
+        <div class="hero"></div>
 
-        <div class="actions">
-          <a class="action-btn" href="https://forms.gle/SEU-LINK-AQUI" target="_blank" rel="noreferrer">
-            Confirmar presença
-          </a>
-          <a class="action-btn" href="#presentes">
-            Sugestões de presente
-          </a>
-          <a class="action-btn" href="https://maps.app.goo.gl/SEU-LINK-AQUI" target="_blank" rel="noreferrer">
-            Ver localização
-          </a>
-        </div>
-
-        <div class="gift-title" id="presentes">Sugestões de presente</div>
-
-        <div class="gift-grid">
-          <article class="gift-card">
-            <img src="./assets/roupinhas-maya.png" alt="Sugestões de roupinhas" />
-            <div class="gift-body">
-              <h3>Roupinhas</h3>
-              <div class="gift-tags">
-                <span class="gift-tag">0 a 24 meses</span>
-                <span class="gift-tag">Conforto</span>
-                <span class="gift-tag">Estilo</span>
-                <span class="gift-tag">Carinho</span>
-              </div>
+        <div class="content">
+          <div class="details">
+            <div class="detail-card">
+              <div class="detail-label">Data</div>
+              <div class="detail-value">00 de mês<br />Domingo</div>
             </div>
-          </article>
-
-          <article class="gift-card">
-            <img src="./assets/brinquedos-maya.png" alt="Sugestões de brinquedos" />
-            <div class="gift-body">
-              <h3>Brinquedos</h3>
-              <div class="gift-tags">
-                <span class="gift-tag">Aprender</span>
-                <span class="gift-tag">Brincar</span>
-                <span class="gift-tag">Imaginar</span>
-                <span class="gift-tag">Crescer</span>
-              </div>
+            <div class="detail-card">
+              <div class="detail-label">Horário</div>
+              <div class="detail-value">00h00</div>
             </div>
-          </article>
+            <div class="detail-card">
+              <div class="detail-label">Local</div>
+              <div class="detail-value">Nome do local</div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="action-btn" href="https://forms.gle/SEU-LINK-AQUI" target="_blank" rel="noreferrer">
+              Confirmar presença
+            </a>
+            <a class="action-btn" href="#presentes">
+              Sugestões de presente
+            </a>
+            <a class="action-btn" href="https://maps.app.goo.gl/SEU-LINK-AQUI" target="_blank" rel="noreferrer">
+              Ver localização
+            </a>
+          </div>
+
+          <div class="gift-title" id="presentes">Sugestões de presente</div>
+
+          <div class="gift-grid">
+            <article class="gift-card">
+              <img src="./assets/roupinhas-maya.png" alt="Sugestões de roupinhas" />
+              <div class="gift-body">
+                <h3>Roupinhas</h3>
+                <div class="gift-tags">
+                  <span class="gift-tag">0 a 24 meses</span>
+                  <span class="gift-tag">Conforto</span>
+                  <span class="gift-tag">Estilo</span>
+                  <span class="gift-tag">Carinho</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="gift-card">
+              <img src="./assets/brinquedos-maya.png" alt="Sugestões de brinquedos" />
+              <div class="gift-body">
+                <h3>Brinquedos</h3>
+                <div class="gift-tags">
+                  <span class="gift-tag">Aprender</span>
+                  <span class="gift-tag">Brincar</span>
+                  <span class="gift-tag">Imaginar</span>
+                  <span class="gift-tag">Crescer</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="footer-image"></div>
         </div>
       </section>
     </main>
