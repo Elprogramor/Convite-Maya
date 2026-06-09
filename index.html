@@ -76,11 +76,15 @@
         background: #fceada;
       }
 
-      .details {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 8px;
-      }
+         .details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 390px);
+  margin: -180px auto 0;
+  position: relative;
+  z-index: 2;
+}
 
       .detail-card {
         padding: 12px 10px;
