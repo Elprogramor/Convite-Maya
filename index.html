@@ -14,10 +14,14 @@
         --surface: rgba(255, 252, 249, 0.9);
         --surface-strong: rgba(255, 255, 255, 0.96);
         --line: rgba(235, 136, 177, 0.22);
+        --line-strong: rgba(235, 136, 177, 0.28);
         --text: #7e5b63;
-        --pink-1: #f6b0c8;
+        --text-soft: #9b7580;
+        --pink-1: #f8c6d9;
         --pink-2: #eb88b1;
         --pink-3: #d96a98;
+        --pink-soft: rgba(235, 136, 177, 0.12);
+        --white-soft: rgba(255, 255, 255, 0.72);
         --max: 460px;
       }
 
@@ -72,7 +76,6 @@
 
       .content {
         position: relative;
-        z-index: 2;
         padding: 18px 14px 20px;
         background: #fceada;
       }
@@ -115,32 +118,99 @@
       .actions {
         margin-top: 50px;
         display: grid;
-        gap: 10px;
+        gap: 12px;
+        width: min(100%, 360px);
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .action-btn {
+        position: relative;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 50px;
-        padding: 14px 16px;
+        min-height: 54px;
+        padding: 14px 18px;
         border-radius: 999px;
-        background: linear-gradient(135deg, var(--pink-1), var(--pink-2), var(--pink-3));
-        color: #fff;
-        font-size: 1rem;
+        color: #ffffff;
+        font-size: 0.98rem;
         font-weight: 700;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 14px 28px rgba(206, 117, 152, 0.2);
-        transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        box-shadow: 0 10px 20px rgba(206, 117, 152, 0.14);
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          filter 180ms ease,
+          opacity 180ms ease;
+        overflow: hidden;
+      }
+
+      .action-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0)
+        );
+        pointer-events: none;
       }
 
       .action-btn:hover {
         transform: translateY(-2px);
+        box-shadow: 0 14px 24px rgba(206, 117, 152, 0.18);
+        filter: saturate(1.01);
+      }
+
+      .action-btn:active {
+        transform: translateY(0);
+      }
+
+      .action-btn:focus-visible {
+        outline: 3px solid rgba(235, 136, 177, 0.22);
+        outline-offset: 3px;
+      }
+
+      .action-btn:nth-child(1) {
+        background: linear-gradient(135deg, #f8c6d9, #ef9fc0);
+      }
+
+      .action-btn:nth-child(2) {
+        background: linear-gradient(135deg, #f9cddd, #f2aac6);
+      }
+
+      .action-btn:nth-child(3) {
+        background: linear-gradient(135deg, #f5bdd3, #e996b8);
+      }
+
+      .gift-section {
+        margin-top: 24px;
+        padding: 18px 14px 16px;
+        border-radius: 28px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.42)),
+          radial-gradient(circle at top center, rgba(255, 255, 255, 0.78), transparent 62%);
+        border: 1px solid rgba(255, 255, 255, 0.64);
+        box-shadow: 0 14px 32px rgba(197, 143, 166, 0.12);
+      }
+
+      .gift-kicker {
+        width: fit-content;
+        margin: 0 auto;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid var(--line);
+        color: var(--pink-2);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
       }
 
       .gift-title {
-        margin-top: 20px;
+        margin-top: 14px;
         text-align: center;
         font-size: 1.38rem;
         font-weight: 700;
@@ -148,8 +218,17 @@
         text-shadow: 0 2px 10px rgba(255, 255, 255, 0.7);
       }
 
+      .gift-subtitle {
+        max-width: 360px;
+        margin: 8px auto 0;
+        text-align: center;
+        font-size: 0.92rem;
+        line-height: 1.65;
+        color: var(--text-soft);
+      }
+
       .gift-grid {
-        margin-top: 12px;
+        margin-top: 16px;
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
@@ -159,7 +238,7 @@
         overflow: hidden;
         border-radius: 22px;
         background: var(--surface-strong);
-        border: 1px solid rgba(235, 136, 177, 0.22);
+        border: 1px solid var(--line-strong);
         box-shadow: 0 14px 28px rgba(198, 143, 166, 0.12);
         backdrop-filter: blur(10px);
       }
@@ -181,6 +260,14 @@
         color: var(--pink-2);
       }
 
+      .gift-copy {
+        margin-top: 8px;
+        text-align: center;
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: var(--text-soft);
+      }
+
       .gift-tags {
         display: flex;
         flex-wrap: wrap;
@@ -192,19 +279,28 @@
       .gift-tag {
         padding: 7px 10px;
         border-radius: 999px;
-        background: rgba(235, 136, 177, 0.12);
+        background: var(--pink-soft);
         color: var(--pink-2);
         font-size: 0.7rem;
         font-weight: 700;
         line-height: 1.2;
       }
 
+      .gift-note {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.62);
+        border: 1px solid rgba(235, 136, 177, 0.14);
+        text-align: center;
+        font-size: 0.82rem;
+        line-height: 1.6;
+        color: var(--text-soft);
+      }
+
       .footer-image {
         width: 100%;
         background: #fceada;
-        position: relative;
-        z-index: 1;
-        margin-top: -90px;
       }
 
       .footer-image img {
@@ -245,18 +341,35 @@
         }
 
         .actions {
-          gap: 8px;
+          margin-top: 50px;
+          gap: 10px;
+          width: min(100%, 340px);
         }
 
         .action-btn {
-          min-height: 46px;
+          min-height: 50px;
           padding: 12px 14px;
           font-size: 0.92rem;
         }
 
+        .gift-section {
+          margin-top: 2222px;
+          padding: 14px 10px 12px;
+          border-radius: 22px;
+        }
+
+        .gift-kicker {
+          font-size: 0.72rem;
+          padding: 7px 12px;
+        }
+
         .gift-title {
           font-size: 1.22rem;
-          margin-top: 16px;
+          margin-top: 12px;
+        }
+
+        .gift-subtitle {
+          font-size: 0.84rem;
         }
 
         .gift-grid {
@@ -271,13 +384,18 @@
           font-size: 0.94rem;
         }
 
+        .gift-copy {
+          font-size: 0.74rem;
+        }
+
         .gift-tag {
           font-size: 0.64rem;
           padding: 6px 8px;
         }
 
-        .footer-image {
-          margin-top: -60px;
+        .gift-note {
+          font-size: 0.76rem;
+          padding: 10px 12px;
         }
       }
     </style>
@@ -312,40 +430,61 @@
             <a class="action-btn" href="#presentes">
               Sugestões de presente
             </a>
-            <a class="action-btn" href="https://www.google.com/maps/place/Condom%C3%ADnio+Recanto+do+Bosque+2/@-22.5005264,-44.0644496,285m/data=!3m1!1e3!4m6!3m5!1s0x9ebd2c9dea34dd:0x94beb832c0e0da13!8m2!3d-22.5006584!4d-44.064659!16s%2Fg%2F11sr02_9zy?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">
+            <a
+              class="action-btn"
+              href="https://www.google.com/maps/place/Condom%C3%ADnio+Recanto+do+Bosque+2/@-22.5005264,-44.0644496,285m/data=!3m1!1e3!4m6!3m5!1s0x9ebd2c9dea34dd:0x94beb832c0e0da13!8m2!3d-22.5006584!4d-44.064659!16s%2Fg%2F11sr02_9zy?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noreferrer"
+            >
               Ver localização
             </a>
           </div>
 
-          <div class="gift-title" id="presentes">Sugestões de presente</div>
+          <section class="gift-section" id="presentes" aria-label="Sugestões de presente">
+            <div class="gift-kicker">Presentinhos com carinho</div>
+            <div class="gift-title">Sugestões de presente</div>
+            <p class="gift-subtitle">
+              Se desejar presentear a Maya, separamos algumas ideias delicadas para ajudar nesse momento tão especial.
+            </p>
 
-          <div class="gift-grid">
-            <article class="gift-card">
-              <img src="./assets/roupinhas-maya.png" alt="Sugestões de roupinhas" />
-              <div class="gift-body">
-                <h3>Roupinhas</h3>
-                <div class="gift-tags">
-                  <span class="gift-tag">0 a 24 meses</span>
-                  <span class="gift-tag">Conforto</span>
-                  <span class="gift-tag">Estilo</span>
-                  <span class="gift-tag">Carinho</span>
+            <div class="gift-grid">
+              <article class="gift-card">
+                <img src="./assets/roupinhas-maya.png" alt="Sugestões de roupinhas" />
+                <div class="gift-body">
+                  <h3>Roupinhas</h3>
+                  <p class="gift-copy">
+                    Vestidinhos, conjuntos, pijaminhas, sapatinhos e peças leves para o dia a dia.
+                  </p>
+                  <div class="gift-tags">
+                    <span class="gift-tag">0 a 24 meses</span>
+                    <span class="gift-tag">Conforto</span>
+                    <span class="gift-tag">Estilo</span>
+                    <span class="gift-tag">Carinho</span>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-            <article class="gift-card">
-              <img src="./assets/brinquedos-maya.png" alt="Sugestões de brinquedos" />
-              <div class="gift-body">
-                <h3>Brinquedos</h3>
-                <div class="gift-tags">
-                  <span class="gift-tag">Aprender</span>
-                  <span class="gift-tag">Brincar</span>
-                  <span class="gift-tag">Imaginar</span>
-                  <span class="gift-tag">Crescer</span>
+              <article class="gift-card">
+                <img src="./assets/brinquedos-maya.png" alt="Sugestões de brinquedos" />
+                <div class="gift-body">
+                  <h3>Brinquedos</h3>
+                  <p class="gift-copy">
+                    Opções lúdicas, educativas e encantadoras para estimular descobertas e sorrisos.
+                  </p>
+                  <div class="gift-tags">
+                    <span class="gift-tag">Aprender</span>
+                    <span class="gift-tag">Brincar</span>
+                    <span class="gift-tag">Imaginar</span>
+                    <span class="gift-tag">Crescer</span>
+                  </div>
                 </div>
-              </div>
-            </article>
-          </div>
+              </article>
+            </div>
+
+            <div class="gift-note">
+              O mais importante será a sua presença nesse dia tão especial. As sugestões são apenas uma forma carinhosa de ajudar.
+            </div>
+          </section>
         </div>
 
         <div class="footer-image">
