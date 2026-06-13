@@ -144,43 +144,37 @@
         opacity: 0.75;
       }
 
-      .invite-crown {
+      .mini-envelope {
         position: relative;
         z-index: 2;
-        margin-top: 18px;
-        color: #c99a33;
-        font-size: 2.1rem;
+        margin-top: 26px;
+        font-size: 2.7rem;
         line-height: 1;
-        text-shadow: 0 2px 8px rgba(255, 255, 255, 0.75);
+        filter: drop-shadow(0 8px 14px rgba(190, 123, 151, 0.16));
       }
 
-      .invite-name {
+      .mini-invite-title {
         position: relative;
         z-index: 2;
-        margin-top: 2px;
+        width: min(100%, 260px);
+        margin: 12px auto 0;
         font-family: Georgia, "Times New Roman", serif;
-        font-size: 3.45rem;
+        font-size: 1.65rem;
         font-weight: 700;
-        line-height: 1;
+        line-height: 1.15;
         color: #e672a2;
         text-shadow:
           0 2px 0 rgba(255, 255, 255, 0.76),
-          0 8px 20px rgba(206, 117, 152, 0.2);
+          0 8px 20px rgba(206, 117, 152, 0.16);
       }
 
-      .invite-ribbon {
+      .mini-invite-text {
         position: relative;
         z-index: 2;
-        width: fit-content;
-        margin: 10px auto 0;
-        padding: 8px 34px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, #f8c6d9, #ef9fc0);
-        color: #ffffff;
-        font-size: 1.05rem;
+        margin-top: 8px;
+        font-size: 0.92rem;
         font-weight: 700;
-        box-shadow: 0 10px 18px rgba(206, 117, 152, 0.18);
-        border: 1px solid rgba(255, 255, 255, 0.55);
+        color: #9b7580;
       }
 
       .invite-line {
@@ -609,13 +603,17 @@
           border-radius: 24px;
         }
 
-        .invite-name {
-          font-size: 3rem;
+        .mini-envelope {
+          font-size: 2.35rem;
+          margin-top: 24px;
         }
 
-        .invite-ribbon {
-          font-size: 0.96rem;
-          padding: 8px 28px;
+        .mini-invite-title {
+          font-size: 1.42rem;
+        }
+
+        .mini-invite-text {
+          font-size: 0.84rem;
         }
 
         .invite-message {
@@ -747,15 +745,16 @@
           <div class="floating-flower flower-three">🦋</div>
 
           <div class="invite-card-front">
-            <div class="invite-crown">♕</div>
-            <div class="invite-name">Maya</div>
-            <div class="invite-ribbon">1 aninho</div>
+            <div class="mini-envelope">💌</div>
+            <div class="mini-invite-title">Você recebeu um convite</div>
+            <div class="mini-invite-text">feito com muito carinho</div>
             <div class="invite-line"></div>
+            <div class="invite-message">Jardim Encantado</div>
             <div class="invite-seal">♡</div>
           </div>
         </div>
 
-        <h1 class="opening-title">O jardim encantado da Maya te espera</h1>
+        <h1 class="opening-title">O jardim encantado te espera</h1>
 
         <p class="opening-text">
           Toque no botão abaixo para abrir esse convite preparado com muito carinho.
