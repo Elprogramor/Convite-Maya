@@ -54,7 +54,51 @@
         text-decoration: none;
       }
 
+      .garden-animation {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+        display: none;
+      }
+
+      body.invite-open .garden-animation {
+        display: block;
+      }
+
+      .garden-item {
+        position: absolute;
+        bottom: -48px;
+        opacity: 0;
+        font-size: 18px;
+        animation: gardenFloat linear forwards;
+        filter: drop-shadow(0 8px 12px rgba(190, 123, 151, 0.12));
+      }
+
+      @keyframes gardenFloat {
+        0% {
+          transform: translateY(0) translateX(0) rotate(0deg) scale(0.9);
+          opacity: 0;
+        }
+
+        12% {
+          opacity: 0.5;
+        }
+
+        70% {
+          opacity: 0.42;
+        }
+
+        100% {
+          transform: translateY(-110vh) translateX(var(--drift)) rotate(var(--rotate)) scale(1.12);
+          opacity: 0;
+        }
+      }
+
       .opening-screen {
+        position: relative;
+        z-index: 1;
         min-height: 100svh;
         width: 100%;
         padding: 18px;
@@ -349,6 +393,8 @@
       }
 
       .page {
+        position: relative;
+        z-index: 1;
         width: min(calc(100% - 18px), var(--max));
         margin: 12px auto 24px;
       }
@@ -358,6 +404,8 @@
       }
 
       .invite {
+        position: relative;
+        z-index: 2;
         overflow: hidden;
         border-radius: 30px;
         box-shadow: 0 22px 48px rgba(190, 123, 151, 0.18);
@@ -780,6 +828,8 @@
       ♪
     </button>
 
+    <div class="garden-animation" id="gardenAnimation" aria-hidden="true"></div>
+
     <section class="opening-screen" id="openingScreen" aria-label="Abrir convite da Maya">
       <div class="opening-card">
         <div class="opening-kicker">Você recebeu um convite especial</div>
@@ -913,8 +963,12 @@
       const invitePage = document.getElementById("invitePage");
       const music = document.getElementById("music");
       const musicBtn = document.getElementById("musicBtn");
+      const gardenAnimation = document.getElementById("gardenAnimation");
 
       let musicPlaying = false;
+      let gardenInterval = null;
+
+      const gardenItems = ["🌸", "🌼", "🦋"];
 
       function tentarTocarMusica() {
         music
@@ -929,13 +983,39 @@
           });
       }
 
+      function criarAnimacaoJardim() {
+        if (gardenInterval) return;
+
+        gardenInterval = setInterval(() => {
+          const item = document.createElement("div");
+          item.classList.add("garden-item");
+
+          item.textContent =
+            gardenItems[Math.floor(Math.random() * gardenItems.length)];
+
+          item.style.left = Math.random() * 100 + "vw";
+          item.style.fontSize = Math.random() * 10 + 15 + "px";
+          item.style.animationDuration = Math.random() * 6 + 9 + "s";
+          item.style.setProperty("--drift", Math.random() * 90 - 45 + "px");
+          item.style.setProperty("--rotate", Math.random() * 80 - 40 + "deg");
+
+          gardenAnimation.appendChild(item);
+
+          setTimeout(() => {
+            item.remove();
+          }, 16000);
+        }, 1600);
+      }
+
       openInviteBtn.addEventListener("click", () => {
         invitePage.classList.remove("is-hidden");
         openingScreen.classList.add("is-opening");
         document.body.classList.remove("intro-active");
+        document.body.classList.add("invite-open");
 
         musicBtn.style.display = "block";
         tentarTocarMusica();
+        criarAnimacaoJardim();
 
         setTimeout(() => {
           openingScreen.style.display = "none";
