@@ -94,11 +94,183 @@
         letter-spacing: 0.04em;
       }
 
-      .opening-envelope {
+      .floating-invite {
+        position: relative;
+        width: min(100%, 350px);
+        height: 260px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: floatInvite 3.8s ease-in-out infinite;
+      }
+
+      .invite-card-front {
+        position: relative;
         width: 100%;
-        border-radius: 30px;
-        box-shadow: 0 22px 48px rgba(190, 123, 151, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.76);
+        height: 220px;
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 36%),
+          linear-gradient(145deg, #fff8f3, #f9cfe0 55%, #f5b7d1);
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        box-shadow:
+          0 22px 48px rgba(190, 123, 151, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.75);
+        overflow: hidden;
+      }
+
+      .invite-card-front::before {
+        content: "";
+        position: absolute;
+        inset: 12px;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.74);
+        pointer-events: none;
+      }
+
+      .invite-card-front::after {
+        content: "";
+        position: absolute;
+        left: -10%;
+        right: -10%;
+        bottom: -40px;
+        height: 120px;
+        background:
+          radial-gradient(circle, rgba(255, 255, 255, 0.88) 0 2px, transparent 3px),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0));
+        background-size: 32px 32px, 100% 100%;
+        transform: rotate(-4deg);
+        opacity: 0.75;
+      }
+
+      .invite-crown {
+        position: relative;
+        z-index: 2;
+        margin-top: 18px;
+        color: #c99a33;
+        font-size: 2.1rem;
+        line-height: 1;
+        text-shadow: 0 2px 8px rgba(255, 255, 255, 0.75);
+      }
+
+      .invite-name {
+        position: relative;
+        z-index: 2;
+        margin-top: 2px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 3.45rem;
+        font-weight: 700;
+        line-height: 1;
+        color: #e672a2;
+        text-shadow:
+          0 2px 0 rgba(255, 255, 255, 0.76),
+          0 8px 20px rgba(206, 117, 152, 0.2);
+      }
+
+      .invite-ribbon {
+        position: relative;
+        z-index: 2;
+        width: fit-content;
+        margin: 10px auto 0;
+        padding: 8px 34px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #f8c6d9, #ef9fc0);
+        color: #ffffff;
+        font-size: 1.05rem;
+        font-weight: 700;
+        box-shadow: 0 10px 18px rgba(206, 117, 152, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+      }
+
+      .invite-line {
+        position: relative;
+        z-index: 2;
+        width: 110px;
+        height: 1px;
+        margin: 13px auto 0;
+        background: rgba(217, 106, 152, 0.26);
+      }
+
+      .invite-message {
+        position: relative;
+        z-index: 2;
+        margin-top: 10px;
+        font-size: 0.86rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #9b7580;
+      }
+
+      .invite-seal {
+        position: absolute;
+        z-index: 3;
+        left: 50%;
+        bottom: 14px;
+        width: 46px;
+        height: 46px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(145deg, #f4a8c6, #df78a5);
+        color: #ffffff;
+        font-size: 1.5rem;
+        box-shadow:
+          0 10px 20px rgba(206, 117, 152, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        border: 3px solid rgba(255, 255, 255, 0.6);
+      }
+
+      .floating-flower {
+        position: absolute;
+        z-index: 4;
+        filter: drop-shadow(0 8px 12px rgba(190, 123, 151, 0.18));
+        animation: floatFlower 4s ease-in-out infinite;
+      }
+
+      .flower-one {
+        top: 8px;
+        left: 8px;
+        font-size: 2rem;
+      }
+
+      .flower-two {
+        right: 8px;
+        bottom: 22px;
+        font-size: 2rem;
+        animation-delay: 0.6s;
+      }
+
+      .flower-three {
+        top: 18px;
+        right: 22px;
+        font-size: 1.7rem;
+        animation-delay: 1s;
+      }
+
+      @keyframes floatInvite {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-1deg);
+        }
+
+        50% {
+          transform: translateY(-10px) rotate(1deg);
+        }
+      }
+
+      @keyframes floatFlower {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+
+        50% {
+          transform: translateY(-8px) rotate(5deg);
+        }
       }
 
       .opening-title {
@@ -427,8 +599,33 @@
           width: min(100%, 420px);
         }
 
-        .opening-envelope {
+        .floating-invite {
+          width: min(100%, 320px);
+          height: 238px;
+        }
+
+        .invite-card-front {
+          height: 205px;
           border-radius: 24px;
+        }
+
+        .invite-name {
+          font-size: 3rem;
+        }
+
+        .invite-ribbon {
+          font-size: 0.96rem;
+          padding: 8px 28px;
+        }
+
+        .invite-message {
+          font-size: 0.78rem;
+        }
+
+        .invite-seal {
+          width: 42px;
+          height: 42px;
+          font-size: 1.35rem;
         }
 
         .opening-title {
@@ -544,11 +741,20 @@
       <div class="opening-card">
         <div class="opening-kicker">Você recebeu um convite especial</div>
 
-        <img
-          class="opening-envelope"
-          src="./convite-fechado.png"
-          alt="Convite fechado da Maya"
-        />
+        <div class="floating-invite" aria-hidden="true">
+          <div class="floating-flower flower-one">🌸</div>
+          <div class="floating-flower flower-two">🌼</div>
+          <div class="floating-flower flower-three">🦋</div>
+
+          <div class="invite-card-front">
+            <div class="invite-crown">♕</div>
+            <div class="invite-name">Maya</div>
+            <div class="invite-ribbon">1 aninho</div>
+            <div class="invite-line"></div>
+            <div class="invite-message">Jardim Encantado</div>
+            <div class="invite-seal">♡</div>
+          </div>
+        </div>
 
         <h1 class="opening-title">O jardim encantado da Maya te espera</h1>
 
