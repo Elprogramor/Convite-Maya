@@ -57,7 +57,7 @@
       .garden-animation {
         position: fixed;
         inset: 0;
-        z-index: 0;
+        z-index: 2;
         pointer-events: none;
         overflow: hidden;
         display: none;
@@ -98,7 +98,7 @@
 
       .opening-screen {
         position: relative;
-        z-index: 1;
+        z-index: 10;
         min-height: 100svh;
         width: 100%;
         padding: 18px;
@@ -394,7 +394,6 @@
 
       .page {
         position: relative;
-        z-index: 1;
         width: min(calc(100% - 18px), var(--max));
         margin: 12px auto 24px;
       }
@@ -405,7 +404,6 @@
 
       .invite {
         position: relative;
-        z-index: 2;
         overflow: hidden;
         border-radius: 30px;
         box-shadow: 0 22px 48px rgba(190, 123, 151, 0.18);
@@ -414,6 +412,8 @@
       }
 
       .hero {
+        position: relative;
+        z-index: 1;
         width: 100%;
         background: #fceada;
       }
@@ -426,7 +426,7 @@
 
       .content {
         position: relative;
-        z-index: 2;
+        z-index: 4;
         padding: 18px 14px 20px;
         background: transparent;
       }
@@ -438,7 +438,7 @@
         width: min(100%, 390px);
         margin: -180px auto 0;
         position: relative;
-        z-index: 2;
+        z-index: 5;
       }
 
       .detail-card {
@@ -467,6 +467,8 @@
       }
 
       .actions {
+        position: relative;
+        z-index: 6;
         margin-top: 50px;
         display: grid;
         gap: 12px;
@@ -538,7 +540,7 @@
 
       .gift-section {
         position: relative;
-        z-index: 3;
+        z-index: 5;
         margin-top: 40px;
         padding: 18px 14px 16px;
         border-radius: 28px;
