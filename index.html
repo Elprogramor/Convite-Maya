@@ -83,7 +83,7 @@
 
       .opening-kicker {
         width: fit-content;
-        margin: 0 auto 14px;
+        margin: 0 auto 18px;
         padding: 8px 14px;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.72);
@@ -97,35 +97,51 @@
       .floating-invite {
         position: relative;
         width: min(100%, 320px);
-        height: 240px;
+        height: 210px;
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: center;
-        animation: floatInvite 3.8s ease-in-out infinite;
       }
 
-      .emoji-glow {
-        position: absolute;
-        width: 190px;
-        height: 190px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(235, 136, 177, 0.28) 0%,
-          rgba(248, 198, 217, 0.18) 38%,
-          rgba(255, 255, 255, 0) 72%
-        );
-        filter: blur(6px);
-      }
-
-      .emoji-invite {
+      .envelope-maya {
+        width: 165px;
+        height: 112px;
+        margin: 0 auto;
         position: relative;
-        z-index: 3;
-        font-size: 6.5rem;
-        line-height: 1;
-        opacity: 0.72;
-        filter: drop-shadow(0 10px 22px rgba(190, 123, 151, 0.18));
+        background: linear-gradient(135deg, #fff8f3, #f8c6d9);
+        border-radius: 16px;
+        box-shadow: 0 18px 38px rgba(190, 123, 151, 0.22);
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        animation: pulseMaya 2.4s ease-in-out infinite;
+      }
+
+      .envelope-maya::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(135deg, transparent 49%, rgba(235, 136, 177, 0.2) 50%),
+          linear-gradient(225deg, transparent 49%, rgba(255, 255, 255, 0.24) 50%);
+        border-radius: 16px;
+      }
+
+      .envelope-maya::after {
+        content: "🌼";
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(235, 136, 177, 0.9);
+        color: #fff;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        box-shadow: 0 8px 20px rgba(206, 117, 152, 0.28);
+        border: 3px solid rgba(255, 255, 255, 0.7);
       }
 
       .floating-flower {
@@ -136,45 +152,49 @@
       }
 
       .flower-one {
-        top: 22px;
-        left: 36px;
+        top: 28px;
+        left: 44px;
         font-size: 1.9rem;
       }
 
       .flower-two {
-        right: 34px;
-        bottom: 34px;
+        right: 42px;
+        bottom: 38px;
         font-size: 2rem;
         animation-delay: 0.6s;
       }
 
       .flower-three {
-        top: 34px;
-        right: 48px;
+        top: 40px;
+        right: 56px;
         font-size: 1.6rem;
         animation-delay: 1s;
       }
 
-      @keyframes floatInvite {
-        0%, 100% {
-          transform: translateY(0);
+      @keyframes pulseMaya {
+        0%,
+        100% {
+          transform: scale(1) translateY(0);
         }
+
         50% {
-          transform: translateY(-10px);
+          transform: scale(1.04) translateY(-6px);
         }
       }
 
       @keyframes floatFlower {
-        0%, 100% {
+        0%,
+        100% {
           transform: translateY(0) rotate(0deg);
         }
+
         50% {
           transform: translateY(-8px) rotate(5deg);
         }
       }
 
       .opening-title {
-        margin: 14px 0 6px;
+        margin: 8px 0 6px;
         font-size: 1.35rem;
         color: var(--pink-2);
         line-height: 1.25;
@@ -502,33 +522,40 @@
 
         .floating-invite {
           width: min(100%, 280px);
-          height: 220px;
+          height: 190px;
         }
 
-        .emoji-glow {
-          width: 160px;
-          height: 160px;
+        .envelope-maya {
+          width: 148px;
+          height: 100px;
+          border-radius: 14px;
         }
 
-        .emoji-invite {
-          font-size: 5.2rem;
+        .envelope-maya::before {
+          border-radius: 14px;
+        }
+
+        .envelope-maya::after {
+          width: 44px;
+          height: 44px;
+          font-size: 20px;
         }
 
         .flower-one {
           top: 22px;
-          left: 18px;
+          left: 26px;
           font-size: 1.7rem;
         }
 
         .flower-two {
-          right: 16px;
-          bottom: 28px;
+          right: 24px;
+          bottom: 30px;
           font-size: 1.8rem;
         }
 
         .flower-three {
-          top: 28px;
-          right: 28px;
+          top: 30px;
+          right: 36px;
           font-size: 1.45rem;
         }
 
@@ -646,11 +673,11 @@
         <div class="opening-kicker">Você recebeu um convite especial</div>
 
         <div class="floating-invite" aria-hidden="true">
-          <div class="emoji-glow"></div>
           <div class="floating-flower flower-one">🌸</div>
           <div class="floating-flower flower-two">🌼</div>
           <div class="floating-flower flower-three">🦋</div>
-          <div class="emoji-invite">💌</div>
+
+          <div class="envelope-maya"></div>
         </div>
 
         <h1 class="opening-title">Um convite especial te espera</h1>
