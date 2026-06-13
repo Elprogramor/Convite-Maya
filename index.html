@@ -40,6 +40,10 @@
         background: #fceada;
       }
 
+      body.intro-active {
+        overflow: hidden;
+      }
+
       img {
         display: block;
         max-width: 100%;
@@ -50,9 +54,108 @@
         text-decoration: none;
       }
 
+      .opening-screen {
+        min-height: 100svh;
+        width: 100%;
+        padding: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+          radial-gradient(circle at top left, rgba(255, 255, 255, 0.78), transparent 34%),
+          radial-gradient(circle at bottom right, rgba(235, 136, 177, 0.18), transparent 38%),
+          #fceada;
+        transition:
+          opacity 420ms ease,
+          transform 420ms ease;
+      }
+
+      .opening-screen.is-opening {
+        opacity: 0;
+        transform: scale(1.02);
+        pointer-events: none;
+      }
+
+      .opening-card {
+        width: min(100%, var(--max));
+        text-align: center;
+      }
+
+      .opening-kicker {
+        width: fit-content;
+        margin: 0 auto 14px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid var(--line);
+        color: var(--pink-2);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .opening-envelope {
+        width: 100%;
+        border-radius: 30px;
+        box-shadow: 0 22px 48px rgba(190, 123, 151, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.76);
+      }
+
+      .opening-title {
+        margin: 18px 0 6px;
+        font-size: 1.35rem;
+        color: var(--pink-2);
+        line-height: 1.25;
+      }
+
+      .opening-text {
+        width: min(100%, 360px);
+        margin: 0 auto;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: var(--text-soft);
+      }
+
+      .open-invite-btn {
+        margin-top: 18px;
+        width: min(100%, 340px);
+        min-height: 54px;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #f8c6d9, #ef9fc0);
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 12px 24px rgba(206, 117, 152, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.48);
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .open-invite-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 28px rgba(206, 117, 152, 0.22);
+      }
+
+      .open-invite-btn:active {
+        transform: translateY(0);
+      }
+
+      .opening-hint {
+        margin-top: 10px;
+        font-size: 0.78rem;
+        color: var(--text-soft);
+      }
+
       .page {
         width: min(calc(100% - 18px), var(--max));
         margin: 12px auto 24px;
+      }
+
+      .page.is-hidden {
+        display: none;
       }
 
       .invite {
@@ -316,6 +419,31 @@
       }
 
       @media (max-width: 420px) {
+        .opening-screen {
+          padding: 12px;
+        }
+
+        .opening-card {
+          width: min(100%, 420px);
+        }
+
+        .opening-envelope {
+          border-radius: 24px;
+        }
+
+        .opening-title {
+          font-size: 1.18rem;
+        }
+
+        .opening-text {
+          font-size: 0.84rem;
+        }
+
+        .open-invite-btn {
+          min-height: 50px;
+          font-size: 0.94rem;
+        }
+
         .page {
           width: min(calc(100% - 12px), var(--max));
           margin-top: 8px;
@@ -410,8 +538,33 @@
       }
     </style>
   </head>
-  <body>
-    <main class="page">
+
+  <body class="intro-active">
+    <section class="opening-screen" id="openingScreen" aria-label="Abrir convite da Maya">
+      <div class="opening-card">
+        <div class="opening-kicker">Você recebeu um convite especial</div>
+
+        <img
+          class="opening-envelope"
+          src="./convite-fechado.png"
+          alt="Convite fechado da Maya"
+        />
+
+        <h1 class="opening-title">O jardim encantado da Maya te espera</h1>
+
+        <p class="opening-text">
+          Toque no botão abaixo para abrir esse convite preparado com muito carinho.
+        </p>
+
+        <button class="open-invite-btn" id="openInviteBtn" type="button">
+          Abrir convite
+        </button>
+
+        <div class="opening-hint">✨ Clique para ver todos os detalhes ✨</div>
+      </div>
+    </section>
+
+    <main class="page is-hidden" id="invitePage">
       <section class="invite" aria-label="Convite da Maya">
         <div class="hero">
           <img src="./mayatopo.png" alt="Topo do convite da Maya" />
@@ -434,7 +587,12 @@
           </div>
 
           <div class="actions">
-            <a class="action-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfSqLXhRj8oDO1OORHDRUILpyK3EzP-cI6nPRNhYR-3U5_rxw/viewform?usp=publish-editor" target="_blank" rel="noreferrer">
+            <a
+              class="action-btn"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfSqLXhRj8oDO1OORHDRUILpyK3EzP-cI6nPRNhYR-3U5_rxw/viewform?usp=publish-editor"
+              target="_blank"
+              rel="noreferrer"
+            >
               Confirmar presença
             </a>
             <a class="action-btn" href="#presentes">
@@ -469,7 +627,6 @@
                     <span class="gift-tag">2 a 3 anos</span>
                     <span class="gift-tag">Calçado 23/24</span>
                     <span class="gift-tag">Peças leves e confortáveis</span>
-                  
                   </div>
                 </div>
               </article>
@@ -501,5 +658,25 @@
         </div>
       </section>
     </main>
+
+    <script>
+      const openingScreen = document.getElementById("openingScreen");
+      const openInviteBtn = document.getElementById("openInviteBtn");
+      const invitePage = document.getElementById("invitePage");
+
+      openInviteBtn.addEventListener("click", () => {
+        invitePage.classList.remove("is-hidden");
+        openingScreen.classList.add("is-opening");
+        document.body.classList.remove("intro-active");
+
+        setTimeout(() => {
+          openingScreen.style.display = "none";
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }, 420);
+      });
+    </script>
   </body>
 </html>
